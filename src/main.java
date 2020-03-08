@@ -3,11 +3,10 @@ import java.util.Scanner;
 public class main {
     public static void main(String[] args) {
         // тесты
-        // drawRectangle_recursion(6,4);
+         drawRectangle_recursion(6,4);
         // printFromOneToX_recursion(5);
         divider(58,'=');System.out.println("\n");
         divider(10,' ');System.out.println("Вас приветствует программа GoJavaTask4\n");
-        programControl();
         Scanner scan = new Scanner(System.in);
         String input = new String();
         boolean run = true;
@@ -17,14 +16,13 @@ public class main {
             switch (input){
                 case "1":
                 while (true){
-                    System.out.println("Введите число до которого от 1 программа выведет все числа,\nили напишите \"back\", чтобы вернуться к выбору функций ");
+                    System.out.println("Введите число до которого от 1 программа выведет все числа");
                     input=scan.nextLine();
                     if(input.equals("back"))
                         break;
                        try{
-                            input.replaceAll("[^0-9,]",",");
-                            input.split(",");
-
+                            int number = Integer.parseInt(input);
+                            printFromOneToX(number);
                         }
                        catch(Exception e){
                         System.out.println("Некорректный ввод");
@@ -32,14 +30,69 @@ public class main {
                     }
                     break;
                 case "2":
+                    while(true) {
+                        System.out.println("Введите два числа, где первое - длина прямоугольника в символах,\nвторое - высота прямоугольника в символах,");
+                        printInfoBack();
+                        input = scan.nextLine();
+                        if(input.equals("back"))
+                            break;
+                        try {
+                            input=input.replaceAll("[^0-9]", ",");
+                            input=input.replaceAll(",,", ",");
+                            String strArr[] = input.split(",");
+                            drawRectangle(Integer.parseInt(strArr[0]),Integer.parseInt(strArr[1]));
+                        } catch (Exception e) {
+                            System.out.println("Некорректный ввод");
+                        }
+                    }
                     break;
                 case "3":
+                    while(true) {
+                        System.out.println("");
+                        printInfoBack();
+                        input = scan.nextLine();
+                        if (input.equals("back"))
+                            break;
+                        try {
+                            drawRectangle(Integer.parseInt(input));
+                        }catch(Exception e) {
+                            System.out.println("Некорректный ввод");
+                        }
+                    }
                     break;
                 case "4":
                     break;
                 case "5":
+                    while(true) {
+                        System.out.println("Введите число до которого от 1 программа выведет все числа,");
+                        printInfoBack();
+                        input = scan.nextLine();
+                        if (input.equals("back"))
+                            break;
+                        try {
+                            int number = Integer.parseInt(input);
+                            printFromOneToX_recursion(number);
+                        } catch (Exception e) {
+                            System.out.println("Некорректный ввод");
+                        }
+                    }
                     break;
                 case "6":
+                    while(true) {
+                        System.out.println("Введите два числа, где первое - длина прямоугольника в символах,\nвторое - высота прямоугольника в символах,");
+                        printInfoBack();
+                        input = scan.nextLine();
+                        if(input.equals("back"))
+                            break;
+                        try {
+                            input=input.replaceAll("[^0-9]", ",");
+                            input=input.replaceAll(",,", ",");
+                            String strArr[] = input.split(",");
+                            drawRectangle_recursion(Integer.parseInt(strArr[0]),Integer.parseInt(strArr[1]));
+                        } catch (Exception e) {
+                            System.out.println("Некорректный ввод");
+                        }
+                    }
                     break;
                 case "leave":
                     System.out.println("точно? yes - да, no - нет");
@@ -59,10 +112,14 @@ public class main {
     }
     //задание №2
     public static void drawRectangle (int x,int y){
-        for(int i=0;i<y;i++) {
-            for (int k = 0; k < x; k++)
-                System.out.print("+");
-            System.out.println();
+        if(x==0||y==0)
+            System.out.println("Прямоугольник не может быть тоньше 1 символа в любом направлении");
+        else {
+            for(int i=0;i<y;i++) {
+                for (int k = 0; k < x; k++)
+                    System.out.print("+");
+                System.out.println();
+            }
         }
     }
     //задание №3
@@ -89,7 +146,7 @@ public class main {
         }
     }
     //задание №6
-    //нужно переносить на новую строку ручками после функции, думаю над оптимизацией
+    //нужно переносить на новую строку ручками после функции, думаю над решением
     public static void drawRectangle_recursion(int x, int y){
         if (x>0){
             drawRectangle_recursion(x-1,0);
@@ -112,8 +169,10 @@ public class main {
         System.out.println("5\t  - Задание №5, реализация задания №1 при помощи рекурсии");
         System.out.println("6\t  - Задание №6, реализация задания №2 при помощи рекурсии");
         System.out.println("leave - Выход из программы");
-        System.out.println("back  - назад к выбору действий");
 
+    }
+    public static void printInfoBack(){
+        System.out.println("или напишите \"back\", чтобы вернуться к выбору функций ");
     }
     public static void divider(int x,char c){
         for(int i=0;i<x;i++)
