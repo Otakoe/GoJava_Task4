@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class main {
     public static void main(String[] args) {
         // тесты
-         drawRectangle_recursion(6,4);
+         drawRectangleRecursion(6,4);
         // printFromOneToX_recursion(5);
         divider(58,'=');System.out.println("\n");
         divider(10,' ');System.out.println("Вас приветствует программа GoJavaTask4");
@@ -103,7 +103,7 @@ public class main {
                             break;
                         try {
                             int number = Integer.parseInt(input);
-                            printFromOneToX_recursion(number);
+                            printFromOneToXRecursion(number);
                             System.out.println();
                         } catch (Exception e) {
                             System.out.println("Некорректный ввод");
@@ -121,7 +121,7 @@ public class main {
                             input=input.replaceAll("[^0-9]", ",");
                             input=input.replaceAll(",,", ",");
                             String strArr[] = input.split(",");
-                            drawRectangle_recursion(Integer.parseInt(strArr[0]),Integer.parseInt(strArr[1]));
+                            drawRectangleRecursion(Integer.parseInt(strArr[0]),Integer.parseInt(strArr[1]));
                             System.out.println("\n");
                         } catch (Exception e) {
                             System.out.println("Некорректный ввод");
@@ -157,11 +157,13 @@ public class main {
     }
     //задание №3
     public static void drawRectangle (int x){
-        if(x==0)
+        if(x==0) {
             System.out.println("Квадрат не может быть тоньше 1 символа в любом направлении");
+        }
         for (int i=0;i<x;i++){
-            for(int k=0;k<x;k++)
+            for(int k=0;k<x;k++) {
                 System.out.print("+");
+            }
             System.out.println();
         }
     }
@@ -174,22 +176,22 @@ public class main {
         return a>b?a:b;
     }
     //задание №5
-    public static void printFromOneToX_recursion (int X){
+    public static void printFromOneToXRecursion(int X){
         if(X>0) {
-            printFromOneToX_recursion(X - 1);
+            printFromOneToXRecursion(X - 1);
             System.out.println(X);
         }
     }
     //задание №6
     //нужно переносить на новую строку ручками после функции, думаю над решением
-    public static void drawRectangle_recursion(int x, int y){
+    public static void drawRectangleRecursion(int x, int y){
         if (x>0){
-            drawRectangle_recursion(x-1,0);
+            drawRectangleRecursion(x-1,0);
             System.out.print("+");
         }
         if(y>1){
             System.out.println();
-            drawRectangle_recursion(x,y-1);
+            drawRectangleRecursion(x,y-1);
         }
     }
 
